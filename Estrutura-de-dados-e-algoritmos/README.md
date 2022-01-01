@@ -1,6 +1,6 @@
 # Introdution
+![](https://img.shields.io/badge/tutor-Bruno_Dias.-informational?style=flat&logoColor=white&color=cdcdcd)
 
-**teacher: Bruno Dias**
 
 # Estrutura de Dados
 
