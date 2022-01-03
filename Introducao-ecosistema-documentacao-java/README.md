@@ -64,7 +64,7 @@ java -version
 criando classe principal na pasta `src/com/dio/MyFirstProgram.java`:
 
 ```
-package com.dio
+package com.dio;
 import com.dio.base.Order;
 
 public class MyFirstProgram {
