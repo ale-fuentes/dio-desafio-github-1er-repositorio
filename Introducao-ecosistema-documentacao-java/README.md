@@ -1,5 +1,6 @@
 # Desafio Git/GitHub
 ![](https://img.shields.io/badge/tutor-Daniel_Hatanaka-informational?style=flat&logoColor=white&color=cdcdcd)
+![](https://img.shields.io/badge/SO-Linux-informational?style=flat&logo=Linux&logoColor=white&color=cdcdcd)
 ![](https://img.shields.io/badge/Java-Language-informational?style=flat&logo=Java&logoColor=white&color=007acc) ![](https://img.shields.io/badge/Eclipse-IDE-informational?style=flat&logo=Eclipse&logoColor=white&color=fa962a) ![](https://img.shields.io/badge/Intellij_IDEA-IDE-informational?style=flat&logo=IntellijIDEA&logoColor=white&color=fa962a) 
 
 ---
@@ -107,3 +108,223 @@ cd target/
 java com.dio.MyFirstProgram
 ```
 
+## Constextualização de uso de java Versão 11
+
+
+#### Palavras reservadas
+
+java tem uma lista de palavras reservadas or [keywords](https://en.wikipedia.org/wiki/List_of_Java_keywords):
+
+| | | | | | |
+| :--- | :--- | :--- | :--- | :--- |:--- |
+|<td colspan=5>keywords java|
+| abstract | continue | float | native |strictfp | void
+|assert|default|for|new|super|volatile
+|boolean|do|goto|null|switch|while
+|break|double|if|package|synchronized
+|byte|else|implements|private|this
+|case|enum|import|protected|throw
+|catch|extends|instanceof|public|throws
+|char|false|int|return|transient
+|class|final|interface|short|true
+|const|finally|long|static|try
+
+
+#### Declaração de classes
+
+* estrutura básica de uma classe:
+```
+public class Order {
+
+}
+```
+* estrutura com atributos e métodos:
+```
+public class Order {
+    private final String code;
+    private final BigDecimal totalValue;
+
+    public BigDecimal calculateFee(){
+    }
+}
+```
+* estrutura completa de uma classe:
+```
+package com.dia.base;
+
+import java.math.BigDecimal;
+
+public class Order {
+    private final String code;
+    private final BigDecimal totalValue;
+
+    public Order(String code, BigDecimal totalValue) {
+        this.code = code;
+        this.totalValue = totalValue;
+    }
+
+    public BigDecimal calculateFee() {
+        return this.totalValue.multiply(new BigDecimal("0.99"));
+    }
+}
+```
+
+#### Modificadores de acesso
+
+segun o tipo, poderá acessar o atributo ou método:
+
+* **public**, qualquer classe de qualquer pacote
+* **protected**, qualquer classe definida no mesmo pacote ou subclase
+* **sem modificador**, apenas classes definidas no mesmo pacote
+* **private**, apenas a própia classe
+
+#### Métodos
+
+são funções que definem o comportamento de uma classe.
+* **métodos construtores**, definem como uma classe será instanciada "construida"
+* **métodos comum**, definem comportamentos que podem ou não estar atribuídas às regras de negócio. ex: calcular taxas de um pedido, etc
+
+#### Estrutura de condição
+
+é responsável por fazer o desvio do fluxo de execuão do código de acordo com uma dada condição
+* if - else
+```
+    public double calculateFee(){
+        if(this.totalValue > 100 ){
+            return this.totalValue * 0.99;
+        }else {
+            return this.totalValue;
+        }
+    }
+```
+* switch - case
+```
+    public double calculateFeeV2(){
+        switch (this.totalValue){
+            case 100:
+                return this.totalValue * 0.99;
+            case 200:
+                return  this.totalValue * 1.99;
+            default:
+                return this.totalValue;
+        }
+    }
+```
+
+
+#### Estrutura de repetição
+é responsável por executar repetitivamente uma instrução ou um bloco de instruções até uma condição estiver sendo satisfeita
+* while
+```
+    public void printItemsWithWhile(){
+        int i=0;
+        while(i < this.items.length){
+            System.out.println(this.items[i]);
+            i++;
+        }
+    }
+```
+* do - while
+```
+    public void printItemsWithDoWhile(){
+        int i=0;
+        do {
+            System.out.println(this.items[i]);
+            i++;
+        }while(i < this.items.length);
+    }
+```
+* for
+```
+    public void printItemsWithFor(){
+        for(int i = 0; i < this.items.length; i++){
+            System.out.println(this.items[i]);
+        }
+    }
+```
+* enhanced for
+```
+    public void printItemsWithEnhancedFor(){
+        for(String i : this.items){
+            System.out.println(i);
+        }
+    }
+```
+
+## Documentação java
+
+
+#### Comentários em linha
+se faz utilizando a sua barras `//`
+#### Comentários em bloco
+se faz utilizando para digitar um comentário mais extenso.
+se iniciar com `/*` e finaliza com `*/`.
+
+#### javadoc
+é uma ferramenta para documentação no formato HTML que se baseia nos comentários do código-fonte.
+os comentários precisam conter tags para que a documentação dique legível.
+
+**Tags javadoc** 
+* **@author**, especifica o autor da classe ou do método
+* **@deprecated**, identifica classe ou métodos obsoletos
+* **@link**, possibilita a definição de um link para um outro documento local ou remoto através de um URL
+* **@param**, descreve um parâmetro que será passado a um método
+* **@return**, descreve qual o ti´po de retorno de um método
+
+```
+javadoc -d javadoc/ -sourcepath src/ -subpackages com.dio
+```
+
+## Mercado e carreira java
+
+#### Comunidade java
+* o tamanho da comunidade auxilia na escolha de uma linguagem de programação de uma empresa
+* qualidade e facilidade para encontrar informações sobre a linguagem diminuem a curva de aprendizado
+* atualmente existem comunidades de tecnoogias onde é possível encontrar um grup voltado para a linguagem
+
+**comunidades**
+* [OpenSanca](opensanca.com.br)
+* [SouJava](soujava.org.br)
+* [DevOpsPBS](devopspbs.org)
+
+#### Carreira
+* muitas empresas de tecnologia aplicam a carreira em "Y"
+* é importante se especializar em uma área: backend, frontend, SRW (site reliability engineering), data engineer, etc
+* esclher e focar em uma plataforma de desenvolvimento java: web, desktop ou mobile
+
+**carreira em "Y"**
+
+.................(tecnico)...................(gestion)
+.................Especialista..............IV Diretor
+.................Especialista..............III Gerente Geral
+.................Especialista..............II Gerente
+.................Especialista..............I Coordenador
+................../....................Senior
+intermedio |....................Pleno
+...................\\...................Junior
+(inicial).........................Estagiario
+
+#### Mercado atual
+* atualmente o mercado para profissionais de TI em geral está em alta
+* o mercado está carente de profissionais qualificados
+* startups de diversos ramos adotaram a linguagem java: PagSeguro, iFood, AWS, MercadoLivre, Itaú, C6 Bank, Dafiti, Luizalabs, etc.
+
+#### Requisitos do profissional
+* ao evoluir na carreira de java ou em qualquer carreira de TI é necessário desenvolver tanto soft skills quanto hard skills
+* cada vez mais soft skills estão se tornando mais prioritárias que hard skills
+
+**soft skills**
+* resolução de problemas complexos
+* pensamento crítico
+* criatividade
+* gestão de pessoas
+* coordenação em equipe
+* liderança
+
+**hard skill**
+* sprit boot
+* spring cloud
+* apache kafka
+* RabbitMQ
+* arquitetura cloud
+* banco de dados relacional e não relacional
