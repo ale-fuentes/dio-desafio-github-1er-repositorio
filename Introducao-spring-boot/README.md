@@ -159,4 +159,7 @@ mvn package && java -jar target/spring-boot-example-0.1.0.jar
 * fazer o build do projeto
 * explorar conteúdo do arquivo .jar gerado
 * executar o projeto no terminal com java -jar
-* trocar o formato do artefato para .war e executar no tamcat
+* trocar o formato do artefato para .war e executar no tomcat
+
+## Exemplos
+[springboot digital innovation one](http://github.com/rpeleias/springboot_digital_innovation_one)
