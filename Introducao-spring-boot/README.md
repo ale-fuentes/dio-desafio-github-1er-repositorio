@@ -153,13 +153,67 @@ Fat/Uber
 mvn package && java -jar target/spring-boot-example-0.1.0.jar
 ```
 * podemos também gerar o war tradicionalmente
-
+alterando nosso arquivo `pom.xml`
+```
+<packaging>war<packaging>
+```
 **Exercício**
 
 * fazer o build do projeto
 * explorar conteúdo do arquivo .jar gerado
 * executar o projeto no terminal com java -jar
 * trocar o formato do artefato para .war e executar no tomcat
+```
+mvn clean package
+```
+apos de build success
+```
+cd /target
+ll
+```
+na lista de arquivo estar nosso projeto .jar
+executar o jar
+```
+java -jar <nome-projeto>.jar
+```
+para verificar o conteudo do jar
+```
+jar tf springboot.jar | less
+```
+mudar no arquivo pom.xml para que o package gere um pacote war.
+```
+<packaging>war<packaging>
+```
+depois, grar novamente o package
+```
+mvn clean package
+cd /target
+ll
+```
+na lista de arquivo esta nosso projeto .war
+move projeto war dentro do tomcat, na pasta `webapps`
+```
+mv target/<nome-projeto>.war apache-tomcat-9.0.26/webapps
+```
+verificamos a copia
+```
+ll apache-tomcat-9.0.26/webapps
+```
+estara nosso projeto .war
+subir o tomcat
+```
+cd apache-tomcat-9.0.26/
+cd bin/
+./startup.sh
+```
+
+
 
 ## Exemplos
-[springboot digital innovation one](http://github.com/rpeleias/springboot_digital_innovation_one)
+[GIT - springboot digital innovation one](http://github.com/rpeleias/springboot_digital_innovation_one)
+
+## Referências
+* [dzone - spring boot tutorial](https://dzone.com/articles/spring-boot-framework-tutorials)
+* [tutorialspoint - o que é spring boot](https://www.tutorialspoint.com/spring_boot/spring_boot_introduction.htm)
+* [spring io - features](https://docs.spring.io/spring-boot/docs/2.2.0.M5/reference/html/spring-boot-features.html)
+[]()
