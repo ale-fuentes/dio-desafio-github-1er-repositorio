@@ -208,12 +208,196 @@ cd bin/
 ```
 
 
-
-## Exemplos
+#### Exemplos
 [GIT - springboot digital innovation one](http://github.com/rpeleias/springboot_digital_innovation_one)
 
-## Referências
+#### Referências
 * [dzone - spring boot tutorial](https://dzone.com/articles/spring-boot-framework-tutorials)
 * [tutorialspoint - o que é spring boot](https://www.tutorialspoint.com/spring_boot/spring_boot_introduction.htm)
 * [spring io - features](https://docs.spring.io/spring-boot/docs/2.2.0.M5/reference/html/spring-boot-features.html)
-[]()
+
+
+---
+
+## Trabalhando com profiles e configurações
+
+#### Importância dos profiles
+
+* ambiente para desenvolviemnto, teste e produção
+```
+Local
+Development |---> Development |---> Staging |---> Production
+```
+* como seria configurar o bancos de dados para cada ambiente
+* execução de testes unitários em ambiente local
+* suíte de testes completas em ambiente de teste
+* simulação do ambiente real em staging
+* deploy simplificado em produção
+
+para esa lista de assunto, tem os profiles que bem para ajudar em:
+
+* Configurações próprias para cada ambiente
+* ambiente com sua configuração: dev, production
+```
+src
+|--main
+   |--java
+   |--resource
+      |--application.properties
+      |--application-dev.properties
+      |--application-release.properties
+```
+
+#### Configurações com arquivos properties
+
+mapeamento de properties:
+```
+@Configuration
+@ConfigurationProperties("spring.datasource")
+@SuppressWarnings("unused")
+public class DBConfiguration {
+
+    private String driverClassName;
+    private String url;
+    private String username;
+    private String password;
+    ...
+    ...
+}
+```
+
+exemplo de profiles DEV:
+```
+@Profile("dev")
+@Bean
+public String devDataBaseConnection() {
+    System.out.println("DB connection for DEV - H2");
+    System.out.println(driverClassName);
+    System.out.println(url);
+    return "DB connection for DEV - H2";
+}
+```
+PRO:
+```
+@Profile("prod")
+@Bean
+public String prodDataBaseConnection() {
+    System.out.println("DB connection to RDS_PROD - High Performance Instance");
+    System.out.println(driverClassName);
+    System.out.println(url);
+    return "DB connection to RDS_PROD - High Performance Instance";
+}
+```
+
+**Exercício**
+
+* projeto com spring.initialzr e importar no IDE
+* arquivos application.properties para dev e prod
+* classe de configuração de BD e anotar com @Configuration
+* mapear propriedades com @ConfigurationProperties
+* criar métodos para instanciar beans de cda env
+* criar classe anotada com @RestController
+* injetar propriedade appMessage com @Value
+* criar método que retorna a messagem acima
+* executar projeto no browser
+
+criar o projeto no `https://start.spring.io/`, é para os metodos getters e setters, se usara uma biblioteca chamada `lombok`.
+
+```
+	<dependency>
+		<groupId>org.projectlombok</groupId>
+		<artifactId>lombok</artifactId>
+		<version>1.18.22</version>
+		<scope>provided</scope>
+	</dependency>
+```
+em `applicatoin.properties` vamos a criar uma propriedade básica:
+```
+#definir qual profile sera ativa
+spring.profiles.active=dev
+
+spring.application.name=Spring Boot Configuration Project
+```
+
+executamos noss projeto
+```
+mvn spring-boot:run
+```
+
+#### Configurações com arquivos YAML
+* troca no formato de configurações: formato .YAML
+* pode estar junto com o .properties
+* diferenças:
+
+.properties
+```
+basic.value: true
+basic.message: Dynamic Message
+basic.number: 100
+```
+.YAML
+```
+basic:
+    value: true
+    message: Dynamic Message
+    number: 100
+```
+
+**Exercício**
+
+* Migrar app.properties do profile dev para YML
+* executar o projeto pelo terminal
+
+#### Configurações com command line
+
+* propriedades do arquivo de configuração na linha de comando
+* sobrescreve as propriedades definidas no arquivo de configurações padrão
+* valores passados como argumento na execução do projeto tem prioridade maior
+
+.properties
+```
+server.port=8081
+spring.application.name=SampleApp
+```
+linha de comando
+```
+mvn spring-boot:run -Dserver.port=8085
+```
+
+**Exercício**
+
+* passar como argumento a propriedade server.port=8085
+* executar o projeto no terminal com o argumento
+* abrir o browser no endereço `http://localhost:8085`
+
+
+#### Configurações com variáveis de ambiente
+
+* variável de ambiente pode ser injetada através da anotação `@Value` no projeto
+* linux e mac: export comum de variável:
+```
+export ENV_DB_URL=jdbc:h2:mem:db;DB_CLOSE_DELAY=-1
+```
+* windows: padrão de variável de ambiente
+* injeção com anotação `@Value(${NOME_VARIAVEL})`
+* definição de valor default quando não há variável
+```
+@Value("${ENV_DB_URL:NENHUMA}")
+private String dbEnvironmentVariable;
+```
+
+**Exercício**
+
+* injetar a variável com `@Value` em `AppController`
+* definição de valor default junto com a anotação `@Value`
+* criar método para chamada do novo método e exibir o valor
+* executar projeto no terminal e exibir no browser
+
+#### Exemplos
+[GIT - springboot profile digital innovation one](http://github.com/rpeleias/springbootprofile_digital_innovation_one)
+
+#### Referências
+* [baeldung - spring boot command line arguments](https://www.baeldung.com/spring-boot-command-line-arguments)
+* [dzone - spring boot profiles 1](https://dzone.com/articles/spring-boot-profiles-1)
+* [spring io - boot features profiles](https://docs.spring.io/spring-boot/docs/current/reference/html/boot-features-profiles.html)
+* [spring io - boot features profiles external](https://docs.spring.io/spring-boot/docs/current/reference/html/features.html#features.external-config)
