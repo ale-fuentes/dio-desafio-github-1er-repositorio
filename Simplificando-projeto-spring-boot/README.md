@@ -322,3 +322,10 @@ Utilize o Spring Boot Test para realizar um pequeno teste de integração em um 
 
 [GitHub : Re04nan - spring boot java](https://github.com/Re04nan/dio-experts-spring-boot-java)
 
+## Conclusão
+
+O ecossistema do Spring Boot veio para facilitar a vida dos desenvolvedores java, podemos ver mais a fundo o seu funcionamento nesse curso, porém, ainda a muito a se aprofundar caso tenha interesse de entender toda sua arquitetura e funcionalidades e não tem problema em não entender tudo, são diversos projetos e nem todos vamos utilizar, vai depender muito do projeto e outros fatores.
+
+Para continuação dos estudos ou consultas indico fortemente a documentação do Spring.io onde tem todas as especificações de cada projeto e anotações utilizadas.
+
+[spring io](https://spring.io/projects)
